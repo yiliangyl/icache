@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package icachepb;
+
+option go_package = "/icachepb";
+
+message GetRequest {
+  string group = 1;
+  string key = 2;
+}
+
+message GetResponse {
+  bytes value = 1;
+  double minute_qps = 2;
+}
+
+service ICache {
+  rpc Get(GetRequest) returns (GetResponse) {}
+}
