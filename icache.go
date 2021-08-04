@@ -3,9 +3,9 @@ package icache
 import (
 	"context"
 	"errors"
-	pb "icache/icachepb"
-	"icache/lru"
-	"icache/singleflight"
+	pb "github/qqIsAProgrammer/icache/icachepb"
+	"github/qqIsAProgrammer/icache/lru"
+	"github/qqIsAProgrammer/icache/singleflight"
 	"math/rand"
 	"strconv"
 	"sync"
@@ -283,10 +283,17 @@ func (g *Group) populateCache(key string, value ByteView, cache *cache) {
 type CacheType int
 
 const (
+	// The MainCache is the cache for items that this peer is the
+	// owner for.
 	MainCache CacheType = iota + 1
+
+	// The HotCache is the cache for items that seem popular
+	// enough to replicate to this node, even though it's not the
+	// owner.
 	HotCache
 )
 
+// CacheStats returns stats about the provided cache within group.
 func (g *Group) CacheStats(which CacheType) CacheStats {
 	switch which {
 	case MainCache:

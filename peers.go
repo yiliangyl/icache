@@ -2,7 +2,7 @@ package icache
 
 import (
 	"context"
-	pb "icache/icachepb"
+	pb "github/qqIsAProgrammer/icache/icachepb"
 )
 
 // Context is alias to context.Context for backwards compatibility purposes.

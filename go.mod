@@ -1,4 +1,4 @@
-module icache
+module github/qqIsAProgrammer/icache
 
 go 1.16
 
